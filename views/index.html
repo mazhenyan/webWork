@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index</title>
+    <link rel="stylesheet" href="public/stylesheets/bootstrap.css">
+</head>
+<body>
+<!--登入界面-->
+<div class="main" style="position: absolute;top: 30%;left: 35%;height: 300px;width: 400px;">
+    <form>
+        <p style="text-align: center;font-size: 24px">教材信息管理网站</p>
+        <div class="form-group">
+            <label for="userID">账号</label>
+            <input type="email" class="form-control" id="userID" placeholder="账号" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" id="password" placeholder="密码">
+        </div>
+    </form>
+    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+    <!--显示时间-->
+    <div class="timer" class="timer" id="timer">
+    </div>
+</div>
+<script src="public/javascripts/jquery-3.3.1-min.js"></script>
+<script src="public/javascripts/bootstrap.js"></script>
+<script src="public/javascripts/index.js"></script>
+<script>
+    getLangDate();
+    function getLangDate(){
+        var dateObj = new Date();
+        var year = dateObj.getFullYear();
+        var month = dateObj.getMonth()+1;
+        var date = dateObj.getDate();
+        var day = dateObj.getDay();
+        var weeks = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+        var week = weeks[day];
+        var hour = dateObj.getHours();
+        var minute = dateObj.getMinutes();
+        var second = dateObj.getSeconds();
+        if(month<10){
+            month = "0"+month;
+        }if(date<10){
+            date = "0"+date;
+        }if(hour<10){
+            hour = "0"+hour;
+        }if(minute<10){
+            minute = "0"+minute;
+        }if(second<10){
+            second = "0"+second;
+        }
+        var newDate = year+"年"+month+"月"+date+"日 "+week+" "+hour+":"+minute+":"+second;
+        document.getElementById("timer").innerHTML = "系统公告：[ "+newDate+" ]";
+        setTimeout("getLangDate()",1000);
+    }
+</script>
+</body>
+</html>
